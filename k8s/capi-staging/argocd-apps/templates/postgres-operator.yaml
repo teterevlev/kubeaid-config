@@ -16,7 +16,7 @@ spec:
       targetRevision: HEAD
       helm:
         valueFiles:
-          - $values/k8s/k8s.staging.blackwoodseven.com/argocd-apps/postgres-operator.yaml
+          - values/k8s/capi-staging/argocd-apps/postgres-operator.yaml
     - repoURL: https://github.com/nihaldivyam/kubeaid-config
       targetRevision: HEAD
       ref: values

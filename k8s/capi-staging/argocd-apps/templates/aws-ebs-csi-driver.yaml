@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-ebs-csi-driver
+  namespace: argo-cd
+
+spec:
+  destination:
+    namespace: cluster-api
+    server: https://kubernetes.default.svc
+  sources:
+    - repoURL: https://github.com/Obmondo/KubeAid
+      path: argocd-helm-charts/aws-ebs-csi-driver
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+          - $values/k8s/capi-staging/argocd-apps/aws-ebs-csi-driver.values.yaml
+    - repoURL: https://github.com/nihaldivyam/kubeaid-config
+      targetRevision: HEAD
+      ref: values
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

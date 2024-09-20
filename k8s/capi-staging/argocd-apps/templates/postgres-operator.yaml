@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: postgres-operator
+  project: default
+  sources:
+    - repoURL: https://github.com/Obmondo/KubeAid
+      path: argocd-helm-charts/postgres-operator
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+          - $values/k8s/k8s.staging.blackwoodseven.com/argocd-apps/postgres-operator.yaml
+    - repoURL: https://github.com/nihaldivyam/kubeaid-config
+      targetRevision: HEAD
+      ref: values
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

@@ -34,4 +34,16 @@ aws:
     instanceType: t4g.medium
     ami:
       id: ami-09615cf870bc4ba4d
-  machinePools: []
+  machinePools:
+    - name: nodes-a
+      minSize: 1
+      maxSize: 5
+      replicas: 1
+      labels:
+        node.cluster.x-k8s.io/instancegroup: nodes-a
+        node.cluster.x-k8s.io/usage: default-apps
+        node.cluster.x-k8s.io/cluster-autoscaler/enabled: ""
+        node.cluster.x-k9s.io/cluster-autoscaler/k8s.staging.blackwoodseven.com: ""
+      instanceType: t4g.large
+      ami:
+        id: ami-09615cf870bc4ba4d

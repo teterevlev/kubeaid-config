@@ -30,7 +30,7 @@ aws:
     loadBalancer:
       loadBalancerType: nlb
     region: eu-west-1
-    replicas: 1
+    replicas: 3
     instanceType: t4g.medium
     ami:
       id: ami-09615cf870bc4ba4d

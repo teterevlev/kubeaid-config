@@ -38,7 +38,7 @@ aws:
     - name: nodes-a
       minSize: 1
       maxSize: 5
-      replicas: 1
+      replicas: 2
       labels:
         node.cluster.x-k8s.io/instancegroup: nodes-a
         node.cluster.x-k8s.io/usage: default-apps

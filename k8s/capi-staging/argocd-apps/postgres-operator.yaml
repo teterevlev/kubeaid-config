@@ -1,4 +1,0 @@
-postgres-operator:
-  configKubernetes:
-    enable_cross_namespace_secret: true
-    pod_environment_configmap:

@@ -139,7 +139,7 @@ spec:
       record: kubeaidManagedApps
     - expr: 0
       labels:
-        name: k8id-custom-azure
+        name: kubeaid-custom-azure
         project: default
       record: kubeaidManagedApps
     - expr: 0

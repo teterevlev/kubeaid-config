@@ -1,24 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-api
+  name: ccm-aws
   namespace: argo-cd
 
 spec:
   destination:
-    namespace: cluster-api
+    namespace: kube-system
     server: https://kubernetes.default.svc
+  project: default
   sources:
     - repoURL: https://github.com/Obmondo/KubeAid
-      path: argocd-helm-charts/cluster-api
+      path: argocd-helm-charts/ccm-aws
       targetRevision: HEAD
       helm:
         valueFiles:
-          - $values/k8s/capi-staging/argocd-apps/cluster-api.values.yaml
+          - $values/k8s/capi-staging/argocd-apps/ccm-aws.values.yaml
     - repoURL: https://github.com/nihaldivyam/kubeaid-config
       targetRevision: HEAD
       ref: values
-  project: default
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

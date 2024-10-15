@@ -1,6 +1,5 @@
 global:
   clusterName: capi-staging
-  customerid: bw7
   kubernetes:
     version: v1.31.0
   clusterAPI:
@@ -9,7 +8,7 @@ global:
     version: v2.6.1
     autoScaler: true
   kubeaid:
-    repo: https://github.com/Obmondo/kubeaid
+    repo: https://github.com/Obmondo/KubeAid
   kubeaidConfig:
     repo: https://github.com/nihaldivyam/kubeaid-config
 
@@ -18,7 +17,7 @@ provider:
 
 aws:
   secretName: cloud-credentials
-  sshKeyName: CapiStaging
+  sshKeyName: capi-staging
   region: eu-west-1
   bastion:
     enabled: true
@@ -35,15 +34,10 @@ aws:
     ami:
       id: ami-09615cf870bc4ba4d
   machinePools:
-    - name: nodes-a
-      minSize: 1
-      maxSize: 5
-      replicas: 4
-      labels:
-        node.cluster.x-k8s.io/instancegroup: nodes-a
-        node.cluster.x-k8s.io/usage: default-apps
-        node.cluster.x-k8s.io/cluster-autoscaler-enabled: ""
-        node.cluster.x-k9s.io/cluster-autoscaler-k8s.staging.blackwoodseven.com: ""
-      instanceType: t4g.large
+    - name: primary
+      replicas: 2
+      instanceType: t4g.medium
+      sshKeyName: kubeaid-demo
       ami:
         id: ami-09615cf870bc4ba4d
+      rootVolumeSize: 35
